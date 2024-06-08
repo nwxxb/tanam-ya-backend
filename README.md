@@ -22,3 +22,9 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+# TODO
+- Add back-office dashboard
+- add metric fu
+- add docker
+- complete this readme

@@ -81,7 +81,17 @@ RSpec.describe Plant, type: :model do
     expect(plant2.tap_root?).to eq(true)
   end
 
-  it 'validates that we can trus the factory' do
+  it 'has many plant note' do
+    plant = create(:plant)
+    note1 = create(:plant_note, plant: plant)
+    note2 = create(:plant_note, plant: plant)
+
+    expect(plant.plant_notes.length).to eq(2)
+    expect(plant.plant_notes.first.id).to eq(note1.id)
+    expect(plant.plant_notes.last.id).to eq(note2.id)
+  end
+
+  it 'validates that we can trust the factory' do
     plant = build(:plant)
 
     expect(plant.valid?).to eq(true)

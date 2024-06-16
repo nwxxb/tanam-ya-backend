@@ -10,7 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_06_15_072118) do
+ActiveRecord::Schema[7.0].define(version: 2024_06_15_113832) do
+  create_table "plant_notes", force: :cascade do |t|
+    t.integer "section", default: 0, null: false
+    t.string "description"
+    t.string "color"
+    t.integer "plant_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plant_id"], name: "index_plant_notes_on_plant_id"
+  end
+
   create_table "plants", force: :cascade do |t|
     t.string "name", null: false
     t.string "scientific_name"

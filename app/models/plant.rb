@@ -14,6 +14,7 @@
 #  updated_at      :datetime         not null
 #
 class Plant < ApplicationRecord
+  has_many :plant_notes
   validates :name,
     length: { in: 1..50 },
     format: { with: /\A[A-Za-z0-9\-\ ]+\z/ },

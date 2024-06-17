@@ -30,3 +30,6 @@
 
 # Ignore byebug history
 .byebug_history
+
+# ignore all env file (if exists)
+.env.*

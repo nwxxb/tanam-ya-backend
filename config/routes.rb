@@ -1,8 +1,11 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
+  namespace :admin do
+    resources :plants
+    resources :plant_notes, except: :index
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+    root to: "plants#index"
+  end
+
   namespace :api do
     namespace :v1 do
       resources :plants, only: [:index]

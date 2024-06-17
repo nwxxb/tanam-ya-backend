@@ -14,7 +14,6 @@
 #  updated_at      :datetime         not null
 #
 class Plant < ApplicationRecord
-  has_many :plant_notes
   validates :name,
     length: { in: 1..50 },
     format: { with: /\A[A-Za-z0-9\-\ ]+\z/ },
@@ -34,4 +33,11 @@ class Plant < ApplicationRecord
     allow_nil: true
   enum root_type: { fibrous: 0, tap: 1 }, _suffix: :root
   enum water_need: { low: 0, medium: 1, high: 2 }, _suffix: true
+
+  has_many :plant_notes
+  accepts_nested_attributes_for(
+    :plant_notes,
+    reject_if: :all_blank,
+    allow_destroy: true
+  )
 end

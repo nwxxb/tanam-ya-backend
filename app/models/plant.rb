@@ -34,7 +34,7 @@ class Plant < ApplicationRecord
   enum root_type: { fibrous: 0, tap: 1 }, _suffix: :root
   enum water_need: { low: 0, medium: 1, high: 2 }, _suffix: true
 
-  has_many :plant_notes
+  has_many :plant_notes, dependent: :destroy
   accepts_nested_attributes_for(
     :plant_notes,
     reject_if: :all_blank,

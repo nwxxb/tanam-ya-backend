@@ -16,14 +16,14 @@ if Rails.env.development?
       Plant.create(
         name: 'Moss', scientific_name: 'Bryophyta',
         description: 'A description of a green moss',
-        height: 1, width: 1, root_type: nil, water_need: :high
+        height: :small, width: :medium, root_type: nil, water_need: :high
       )
 
       # plant with a note
       daisy = Plant.create(
         name: 'Daisy', scientific_name: 'Bellis perennis',
         description: 'A description of a daisy',
-        height: 11, width: 12, root_type: :fibrous, water_need: :medium
+        height: :small, width: :medium, root_type: :fibrous, water_need: :medium
       )
 
       daisy.plant_notes = [
@@ -38,7 +38,7 @@ if Rails.env.development?
       water_melon = Plant.create(
         name: 'Watermelon', scientific_name: 'Citrullus lanatus',
         description: 'A description of a green big watermelon',
-        height: 30, width: 300, root_type: :tap, water_need: :high
+        height: :medium, width: :wide, root_type: :tap, water_need: :high
       )
 
       water_melon.plant_notes = [

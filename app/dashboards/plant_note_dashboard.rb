@@ -65,6 +65,6 @@ class PlantNoteDashboard < Administrate::BaseDashboard
   # across all pages of the admin dashboard.
   #
   def display_resource(plant_note)
-    "Note on #{plant_note.section.capitalize} ##{plant_note.id}"
+    "Note on #{plant_note.section} ##{plant_note.id}"
   end
 end

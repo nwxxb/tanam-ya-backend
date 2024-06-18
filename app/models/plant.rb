@@ -25,12 +25,8 @@ class Plant < ApplicationRecord
   validates :description,
     length: { in: 1..1000 },
     allow_nil: true
-  validates :width,
-    numericality: { only_integer: true, in: 1..1_000_000 },
-    allow_nil: true
-  validates :height,
-    numericality: { only_integer: true, in: 1..1_000_000 },
-    allow_nil: true
+  enum height: { small: 0, medium: 1, tall: 2 }, _suffix: :height
+  enum width: { narrow: 0, medium: 1, wide: 2 }, _suffix: :width
   enum root_type: { fibrous: 0, tap: 1 }, _suffix: :root
   enum water_need: { low: 0, medium: 1, high: 2 }, _suffix: true
 

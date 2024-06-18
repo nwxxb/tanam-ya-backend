@@ -46,25 +46,21 @@ RSpec.describe Plant, type: :model do
     expect(invalid_plants.map(&:valid?)).not_to include(true)
   end
 
-  it 'validates width and height to not has big value (max size of integer value)' do
-    invalid_value = [
-      2147483647 + 1,
-      '9999999999'
-    ]
+  it 'validates width and height\'s enum value' do
+    plant1 = build(:plant, height: :small, width: :wide)
+    plant2 = build(:plant, height: :medium, width: :medium)
+    plant3 = build(:plant, height: :tall, width: :narrow)
 
-    invalid_plants = [
-      build(:plant, height: invalid_value.last),
-      build(:plant, width: invalid_value.first),
-      build(:plant, height: invalid_value.first, width: invalid_value.last)
-    ]
-
-    expect(invalid_plants.map(&:valid?)).not_to include(true)
+    expect([plant1, plant2, plant3].map(&:valid?)).to all be true
+    expect(plant1.small_height? && plant1.wide_width?).to eq(true)
+    expect(plant2.medium_height? && plant2.medium_width?).to eq(true)
+    expect(plant3.tall_height? && plant3.narrow_width?).to eq(true)
   end
 
   it 'enum on water_need' do
-    plant1 = build(:plant, water_need: 0)
-    plant2 = build(:plant, water_need: 1)
-    plant3 = build(:plant, water_need: 2)
+    plant1 = build(:plant, water_need: :low)
+    plant2 = build(:plant, water_need: :medium)
+    plant3 = build(:plant, water_need: :high)
 
     expect([plant1, plant2, plant3].map(&:valid?)).to all be true
     expect(plant1.low_water_need?).to eq(true)
@@ -73,8 +69,8 @@ RSpec.describe Plant, type: :model do
   end
 
   it 'enum on root_type' do
-    plant1 = build(:plant, root_type: 0)
-    plant2 = build(:plant, root_type: 1)
+    plant1 = build(:plant, root_type: :fibrous)
+    plant2 = build(:plant, root_type: :tap)
 
     expect([plant1, plant2].map(&:valid?)).to all be true
     expect(plant1.fibrous_root?).to eq(true)

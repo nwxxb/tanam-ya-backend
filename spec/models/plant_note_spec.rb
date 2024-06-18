@@ -19,11 +19,11 @@ require 'rails_helper'
 RSpec.describe PlantNote, type: :model do
   it 'validates and enum section' do
     invalid_note = build(:plant_note, section: nil)
-    note1 = build(:plant_note, section: 0, description: 'Big red rose flower')
-    note2 = build(:plant_note, section: 1, description: 'Big green rose leaves')
-    note3 = build(:plant_note, section: 2, description: 'There is no fruit :(')
-    note4 = build(:plant_note, section: 3, description: 'long tap root')
-    note5 = build(:plant_note, section: 4, description: 'with sharp trunk')
+    note1 = build(:plant_note, section: :flower, description: 'Big red rose flower')
+    note2 = build(:plant_note, section: :leaf, description: 'Big green rose leaves')
+    note3 = build(:plant_note, section: :fruit, description: 'There is no fruit :(')
+    note4 = build(:plant_note, section: :root, description: 'long tap root')
+    note5 = build(:plant_note, section: :trunk, description: 'with sharp trunk')
 
     expect(invalid_note.valid?).to eq(false)
     expect([note1, note2, note3, note4, note5].map(&:valid?)).to all be true
